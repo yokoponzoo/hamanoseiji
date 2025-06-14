@@ -5,13 +5,6 @@ from libs.config import load_config
 
 config = load_config()
 
-# set page config
-def set_page_config():
-    st.set_page_config(
-        page_title=config["pages"]["title"],
-    )
-
-
 # load the custom CSS
 def load_css():
     with open(config["css"]) as f:
@@ -38,13 +31,43 @@ def set_sidebar():
     )
 
 
+# set page navigation
+def set_page_info(page_params):
+    """Set the pages for navigation."""
+    page = st.Page(
+        page=page_params["src"],
+        title=page_params["title"],
+    )
+    return page
+
+
+def set_pages_navigation():
+    """Set the pages for navigation."""
+    # set profile page
+    profile_page = set_page_info(config["pages"]["profile"])
+
+    # set research pages
+    research_pages = []
+    for page_num in config["pages"]["research"]:
+        page_params = config["pages"]["research"][page_num]
+        page = set_page_info(page_params)
+        research_pages.append(page)
+    pg = st.navigation(
+        {
+            "profile": [profile_page],
+            "research": research_pages,
+        }
+    )
+    pg.run()
+
+
 def set_page():
     """Set the page configuration."""
-    # set page config
-    set_page_config()
-
     # set style
     load_css()
 
     # sidebar
-    set_sidebar()
+    # set_sidebar()
+
+    # NOTE: last
+    set_pages_navigation()
