@@ -1,9 +1,8 @@
 import streamlit as st
 from PIL import Image
 
-from libs.config import load_config
+from libs.config import config
 
-config = load_config()
 
 # load the custom CSS
 def load_css():

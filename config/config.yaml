@@ -1,11 +1,11 @@
 css: css/style.css
 profile_img: data/profile.webp
-
+host_name: hamanoseiji-pokeca.streamlit.app
 pages:
   profile:
     src: page/00_profile.py
     title: 浜のせいじ@ポケカ研究員
   research:
-    1:
-      src: page/01_xxx.py
-      title: xyz
+    lance:
+      src: page/01_lance.py
+      title: ロケット団のランスの先1で打てる確率
