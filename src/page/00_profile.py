@@ -1,10 +1,8 @@
+import pandas as pd
 import streamlit as st
 
-from libs.config import load_config
-from libs.set_page import set_page
-
-config = load_config()
-# set_page()
+from libs.config import config
+from libs.utils import is_local
 
 st.header("概要")
 st.markdown(
@@ -18,10 +16,23 @@ st.markdown(
 
 # TODO: リスト表示して、検索できるようにする。サイドバーも同様。リストはファイルから取得して表示できるようにする。
 st.header("研究一覧")
-st.markdown(
-    """
-    - xxx
-    - yyy
-    - zzz
-    """
+
+# research pages
+print("is_local:", is_local)
+df_research = []
+for page_name in config["pages"]["research"]:
+    # get page info
+    page_title = config["pages"]["research"][page_name]["title"]
+    if is_local:
+        page_url = f"http://localhost:8501/{page_name}"
+    else:
+        page_url = f"https://{config['host_name']}/{page_name}"
+
+    df_research.append([page_title, page_url])
+df_research = pd.DataFrame(df_research, columns=["記事", "URL"])
+
+st.dataframe(
+    df_research,
+    use_container_width=True,
+    column_config={"URL": st.column_config.LinkColumn(display_text="記事")},
 )
