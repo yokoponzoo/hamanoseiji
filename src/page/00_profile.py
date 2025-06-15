@@ -18,7 +18,6 @@ st.markdown(
 st.header("研究一覧")
 
 # research pages
-print("is_local:", is_local)
 df_research = []
 for page_name in config["pages"]["research"]:
     # get page info
