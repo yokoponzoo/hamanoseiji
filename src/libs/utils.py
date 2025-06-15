@@ -1,4 +1,4 @@
-import socket
+import os
 
 import streamlit as st
 
@@ -7,11 +7,9 @@ from libs.config import config
 
 def check_local():
     """check environment is local or not."""
-    host_name = socket.gethostname()
-    host_ip = socket.gethostbyname(host_name)
-    print(f"Host Name: {host_name}")
-    print(f"Host IP: {host_ip}")
-    if host_ip == "localhost" or host_ip == "127.0.0.1":
+    # get environment variable STREAMLIT_ENV
+    env = os.getenv("STREAMLIT_ENV")
+    if env == "local":
         return True
     else:
         return False
