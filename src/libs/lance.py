@@ -127,7 +127,7 @@ def try_sim(
 
     count = 0
     progress_count = count / (trial_num)
-    print(f"{count} / {trial_num}")
+    # print(f"{count} / {trial_num}")
     progress_bar = st.progress(progress_count, text=f"{count} / {trial_num}")
 
     # run simulation
@@ -178,7 +178,7 @@ def try_sim(
         count += 1
         progress_count = count / (trial_num)
         progress_bar.progress(progress_count, text=f"{count} / {trial_num}")
-        print(f"{count} / {trial_num}")
+        # print(f"{count} / {trial_num}")
 
     # create summary dataframe
     df_sim_result_summary = pd.concat(df_sim_result_summary, ignore_index=True)

@@ -9,3 +9,6 @@ pages:
     lance:
       src: page/01_lance.py
       title: ロケット団のランスの先1で打てる確率
+    pokegear:
+      src: page/02_pokegear.py
+      title: ポケギアの成功率まとめ
